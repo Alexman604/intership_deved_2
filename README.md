@@ -16,6 +16,16 @@ npm install firebase
 sass
 npm install -g sass
 
+
+npm install --save react-redux
+npm install @reduxjs/toolkit
+
+npm install redux-saga
+
+npm install redux
+npm install --save redux-devtools-extension
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
