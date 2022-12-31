@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+
+.ant-layout {
+    min-height: 100vh;
+
+    .ant-layout-header {
+        display: flex;
+
+        align-items: center;
+        justify-content: space-between;
+
+        .favicon {
+            height: 70%;
+            width: auto;
+        }
+
+        .imageLogout {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            width: auto;
+
+            .userImage {
+                height: 70%;
+                margin: 0 10px;
+
+            }
+
+            p {
+                color: white;
+                cursor: pointer;
+               &:hover{
+                color: red;
+               }
+            }
+
+         
+        }
+    }
+}
+
+
+.ant-btn {
+    border-radius: 0;
+}
