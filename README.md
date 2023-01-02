@@ -24,7 +24,8 @@ npm install redux-saga
 
 npm install redux
 npm install --save redux-devtools-extension
-
+npm install --save react-firebase-hooks
+npm install --save @ant-design/icons
 
 # Getting Started with Create React App
 

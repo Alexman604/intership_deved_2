@@ -1,19 +1,17 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
+import React, { useState, useEffect }  from 'react';
+import { Button, Checkbox, Form, Input, message } from 'antd';
 import { accountsRef } from '../../firebase/firebaseConnection';
 import { onSnapshot } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { loginUser } from '../../store/userSlice';
-import { useAuth } from '../../store/useAuth';
-import { Navigate } from "react-router-dom";
-import { message } from 'antd';
+import { useNavigate } from "react-router-dom";
+
 
 const LoginPage = () => {
   const [users, setUsers] = useState("");
   const [form] = Form.useForm()
   const dispatch = useDispatch();
-  const { isAuth } = useAuth()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const unSub = onSnapshot(accountsRef, (snapshot) => {
@@ -37,6 +35,7 @@ const LoginPage = () => {
             userId: user.id
           }
           localStorage.setItem('userData', JSON.stringify(userData))
+          navigate("/")
         }
       }
     } if (!success) { message.error(`Invalid username or password! try "user1" , "pass1"`) }
@@ -49,7 +48,6 @@ const LoginPage = () => {
 
   return (
     <>
-      {isAuth ? <Navigate replace to="/" /> : null}
       <Form
         name="basic"
         labelCol={{
@@ -65,7 +63,6 @@ const LoginPage = () => {
         onFinish={onFinish}
         autoComplete="off"
       >
-
         <Form.Item
           label="Username"
           name="username"
@@ -109,7 +106,6 @@ const LoginPage = () => {
             span: 16,
           }}
         >
-
           <Button type="primary" htmlType="submit">
             Submit
           </Button>

@@ -1,42 +1,27 @@
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { useAuth } from "../../store/useAuth";
-import { Layout, Button } from 'antd';
-import { logoutUser } from "../../store/userSlice";
-import { useDispatch } from "react-redux";
-import favicon from "./FE-2-design_favicon.png"
-import { Checkbox } from 'antd';
+import { Layout } from 'antd';
+import Header from "../header/header"
+import MainTable from "../mainTable/main-table";
 
 
 const MainPage = () => {
-    const { Header, Content } = Layout;
-    const { isAuth, userImage } = useAuth()
-    const dispatch = useDispatch();
+    const { Content } = Layout;
+    const { isAuth } = useAuth();
+    const navigate = useNavigate();
 
-    const onLogOut = () => {
-        dispatch(logoutUser())
-        localStorage.removeItem('userData');
-    }
-    const onChange = (e) => {
-        console.log(`checked = ${e.target.checked}`);
-    };
+    useEffect(() => {
+        if (!isAuth) navigate("/login")
 
-
-    if (!isAuth) return <Navigate replace to="/login" />
+    }, []);
 
     return (
         <Layout>
-            <Header>
-                <img className="favicon" src={favicon} alt="hotel_icon" />
-                <div className="imageLogout">
-                    <img className="userImage" src={userImage} alt="user_icon" />
-                    <p onClick={() => onLogOut()}>Log Out</p>
-                </div>
-            </Header>
+            <Header />
             <Content>
-                <Button type="primary">Clear all filters</Button>
-                <Checkbox onChange={onChange}>Checkbox</Checkbox>
+          <MainTable/>
             </Content>
-
         </Layout>
 
     );
