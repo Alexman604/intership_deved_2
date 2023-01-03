@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import { useAuth } from "../../store/useAuth";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../store/userSlice";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const Header = () => {
     const { Header } = Layout;
@@ -14,16 +14,20 @@ const Header = () => {
     const onLogOut = () => {
         dispatch(logoutUser())
         localStorage.removeItem('userData');
-        navigate("/login") 
+        navigate("/login")
     }
     return (
-        <Header>
-        <img className="favicon" src={favicon} alt="hotel_icon" />
-        <div className="imageLogout">
-            <img className="userImage" src={userImage} alt="user_icon" />
-            <p onClick={() => onLogOut()}>Log Out</p>
-        </div>
-    </Header>
+        <Layout>
+            <Header>
+                <img className="favicon" src={favicon} alt="hotel_icon" />
+                <div className="imageLogout">
+                    <img className="userImage" src={userImage} alt="user_icon" />
+                    <p onClick={() => onLogOut()}>Log Out</p>
+                </div>
+            </Header>
+            <Outlet />
+        </Layout>
+
     );
 }
 

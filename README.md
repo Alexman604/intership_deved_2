@@ -27,6 +27,8 @@ npm install --save redux-devtools-extension
 npm install --save react-firebase-hooks
 npm install --save @ant-design/icons
 
+npm install dayjs
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

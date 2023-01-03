@@ -9,6 +9,7 @@ import { loginUser } from '../../store/userSlice';
 import { useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useAuth } from '../../store/useAuth';
+import Header from '../header/header';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,15 +25,22 @@ const App = () => {
   }
 
   useEffect(() => {
-      // importData()
+       importData()
     getDataFromLS()
   }, []);
 
   return (
-    <Routes>
-      <Route path='/' element={<MainPage />} />
+    <Routes >
+      <Route path='/login' exact element={ !isAuth ? <LoginPage /> : <Navigate to="/" />} /> 
+      <Route path="/" element ={<Header/>}>
+       <Route index element={<MainPage />} />
       <Route path='/rooms/:id' element= {<Room/>}/>
-      <Route path='/login' exact element={ !isAuth ? <LoginPage /> : <Navigate to="/" />} />
+      
+      </Route>
+      
+      
+      
+      
     </Routes>
   );
 }

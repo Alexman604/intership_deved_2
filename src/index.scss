@@ -2,17 +2,21 @@
 
 
 .ant-layout {
-    min-height: 100vh;
-
+   
     .ant-layout-header {
         display: flex;
-
+    //   min-height: 100vh;
+     min-width: 100vw;
+    position: fixed;
+    z-index: 100;
         align-items: center;
         justify-content: space-between;
 
         .favicon {
             height: 70%;
             width: auto;
+            position: relative;
+            right: 20px;
         }
 
         .imageLogout {
@@ -43,4 +47,37 @@
 
 .ant-btn {
     border-radius: 0;
+}
+
+
+.login-container{
+    min-height: 100vh;
+ width: 100vw;
+display: flex;
+    justify-content: center;
+    background-color: rgb(240, 236, 236);
+}
+
+.login-form {
+    padding: 20px;
+    min-width: 500px;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+}
+
+.room-page {
+    margin-top: 65px;
+    min-height: calc(100vh - 65px);
+    padding: 30px;
+    display: flex;
+    p{
+        font-size: 18px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        color: #1677ff;
+    }
+}
+
+.ant-modal-content{
+    border-radius: 0px !important
 }

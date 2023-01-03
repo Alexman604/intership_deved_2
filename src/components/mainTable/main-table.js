@@ -12,7 +12,7 @@ const MainTable = () => {
     const [sortedInfo, setSortedInfo] = useState({});
 
     if (error) { message.error(`Rooms loading error`) }
-
+console.log(rooms)
     const handleChange = (pagination, filters, sorter) => {
         setFilteredInfo(filters);
         setSortedInfo(sorter);

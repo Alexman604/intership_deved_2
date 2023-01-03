@@ -4,7 +4,8 @@ import { Carousel } from 'antd';
 const CarouselPhoto = ({ images = [] }) => {
    
     const imgStyle = {
-        width: '460px',
+        width: '100%',
+       
     }
     return (
         <Carousel effect="fade" autoplay="true" style={imgStyle}>

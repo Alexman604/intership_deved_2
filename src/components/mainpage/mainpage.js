@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "../../store/useAuth";
 import { Layout } from 'antd';
-import Header from "../header/header"
+
 import MainTable from "../mainTable/main-table";
 
 
@@ -18,9 +18,8 @@ const MainPage = () => {
 
     return (
         <Layout>
-            <Header />
             <Content>
-          <MainTable/>
+                <MainTable/>
             </Content>
         </Layout>
 
