@@ -27,7 +27,6 @@ const Header = () => {
             </Header>
             <Outlet />
         </Layout>
-
     );
 }
 

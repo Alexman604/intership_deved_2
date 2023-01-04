@@ -1,23 +1,32 @@
 
-import { Carousel } from 'antd';
+import { Carousel, Spin, Image } from 'antd';
+const CarouselPhoto = ({ images }) => {
 
-const CarouselPhoto = ({ images = [] }) => {
-   
-    const imgStyle = {
-        width: '100%',
-       
-    }
+
+
+
     return (
-        <Carousel effect="fade" autoplay="true" style={imgStyle}>
-            <div >
-                <h3 >
-                    <img style={imgStyle} src={images[0]} alt="" />
-                </h3>
-            </div>
-            <div >
-                <h3 ><img style={imgStyle} src={images[1]} alt="" /></h3>
-            </div>
-        </Carousel>
+        <>
+            {!images ? <Spin /> : null}
+            <Carousel 
+            // autoplay="true" 
+          
+             className="carousel-wrapper"
+            >
+
+                <div >
+                
+                <Image height='auto'src={images[0]} fluid />
+                  
+                </div>
+                <div >
+                   <Image  src={images[1]} fluid  />
+                </div>
+            </Carousel>
+
+
+        </>
+
     );
 }
 export default CarouselPhoto;

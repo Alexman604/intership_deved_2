@@ -4,15 +4,16 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { roomsRef } from "../../firebase/firebaseConnection";
 import { useNavigate } from 'react-router-dom';
 
-
 const MainTable = () => {
     const navigate = useNavigate();
     const [rooms, loading, error] = useCollectionData(roomsRef);
     const [filteredInfo, setFilteredInfo] = useState({});
     const [sortedInfo, setSortedInfo] = useState({});
+    const [freeRooms, setFreeRooms] = useState(null)
 
     if (error) { message.error(`Rooms loading error`) }
-console.log(rooms)
+    if (loading) return <Spin />
+
     const handleChange = (pagination, filters, sorter) => {
         setFilteredInfo(filters);
         setSortedInfo(sorter);
@@ -21,8 +22,18 @@ console.log(rooms)
         setFilteredInfo({});
     };
 
+    const userNameFilerData = () => {
+        if (rooms && !freeRooms) {
+            return rooms.filter(room => room.isCheckedIn).map(room => ({ text: room.guest, value: room.guest })).sort((a, b) => a.text.localeCompare(b.text))
+        }
+        else return [];
+    }
+
     const onChange = (e) => {
-        console.log(`checked = ${e.target.checked}`);
+        if (e.target.checked) {
+            setFreeRooms(rooms.filter(room => !room.isCheckedIn))
+        }
+        else { setFreeRooms(null) }
     };
 
     const columns = [
@@ -30,6 +41,7 @@ console.log(rooms)
             title: 'Number',
             dataIndex: 'number',
             key: 'number',
+            defaultSortOrder: 'descend',
             sorter: (a, b) => a.number - b.number,
             sortOrder: sortedInfo.columnKey === 'number' ? sortedInfo.order : null,
             ellipsis: true,
@@ -92,12 +104,7 @@ console.log(rooms)
             title: 'Guest',
             dataIndex: 'guest',
             key: 'guest',
-            filters: [
-                {
-                    text: 'filter',
-                    value: 'filter',
-                },
-            ],
+            filters: userNameFilerData(),
             filteredValue: filteredInfo.guest || null,
             onFilter: (value, record) => record.guest.includes(value),
             ellipsis: true,
@@ -109,18 +116,17 @@ console.log(rooms)
         },
 
     ];
-    if (loading) return <Spin />
+
     return (
-        <Layout>
+        <Layout className="page-wrapper" >
             <Space
                 style={{
-                    marginBottom: 16,
-                }}
-            >
+                    marginBottom: 20,
+                }}       >
                 <Button type="primary" onClick={clearFilters}>Clear filters</Button>
                 <Checkbox onChange={onChange}>Free rooms only</Checkbox>
             </Space>
-            <Table columns={columns} dataSource={rooms} onChange={handleChange} />
+            <Table columns={columns} pagination={{ position: ['bottomCenter'] }} dataSource={freeRooms || rooms} onChange={handleChange} size="small" />
         </Layout>
     );
 }

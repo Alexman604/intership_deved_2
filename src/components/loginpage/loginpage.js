@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Checkbox, Form, Input, message, Space, Typography } from 'antd';
+import { Button, Checkbox, Form, Input, message, Typography } from 'antd';
 import { accountsRef } from '../../firebase/firebaseConnection';
 import { onSnapshot } from "firebase/firestore";
 import { useDispatch } from "react-redux";
@@ -39,7 +39,7 @@ const LoginPage = () => {
           navigate("/")
         }
       }
-    } if (!success) { message.error(`Invalid username or password! try "user1" , "pass1"`) }
+    } if (!success) { message.error(`Invalid username or password! try "user1", "pass1"`) }
   }
 
   const onFinish = (values) => {
@@ -49,9 +49,7 @@ const LoginPage = () => {
 
   return (
     <div className='login-container'>
-
       <div className='login-form'>
-
         <Form
           name="basic"
           labelCol={{
@@ -80,7 +78,6 @@ const LoginPage = () => {
           >
             <Input />
           </Form.Item>
-
           <Form.Item
             label="Password"
             name="password"
@@ -93,7 +90,6 @@ const LoginPage = () => {
           >
             <Input.Password />
           </Form.Item>
-
           <Form.Item
             name="remember"
             valuePropName="checked"
@@ -103,7 +99,6 @@ const LoginPage = () => {
           >
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-
           <Form.Item
             wrapperCol={{
               offset: 10,
