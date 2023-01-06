@@ -36,12 +36,12 @@
                 cursor: pointer;
                 line-height: 20px;
                 padding: 10px;
-              
+
                 &:hover {
                     padding: 9px;
                     border: 1px solid rgb(66, 65, 65);
                     background-color: rgb(102, 102, 102);
-                   
+
                 }
             }
 
@@ -73,8 +73,8 @@
 
 .page-wrapper {
     margin-top: 50px;
- min-height: calc(100vh - 85px);
-    
+    min-height: calc(100vh - 85px);
+
     padding: 30px;
     display: flex;
 
@@ -96,5 +96,3 @@
     left: 50%;
 
 }
-
-

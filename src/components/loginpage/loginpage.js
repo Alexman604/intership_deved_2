@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Checkbox, Form, Input, message, Typography } from 'antd';
-import { accountsRef } from '../../firebase/firebaseConnection';
+import React, { useState, useEffect } from "react";
+import { Button, Checkbox, Form, Input, message, Typography } from "antd";
+import { accountsRef } from "../../firebase/firebaseConnection";
 import { onSnapshot } from "firebase/firestore";
 import { useDispatch } from "react-redux";
-import { loginUser } from '../../store/userSlice';
+import { loginUser } from "../../store/userSlice";
 import { useNavigate } from "react-router-dom";
-
 
 const LoginPage = () => {
   const [users, setUsers] = useState("");
-  const [form] = Form.useForm()
+  const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { Title } = Typography;
 
   useEffect(() => {
@@ -25,22 +24,25 @@ const LoginPage = () => {
     let success = false;
     for (let user of users) {
       if (user.user === userName && user.password === userPassword) {
-        message.success(`Welcome ${user.user}!`)
+        message.success(`Welcome ${user.user}!`);
         success = true;
 
-        dispatch(loginUser({ userName: user.user, userImage: user.image, userId: user.id }))
+        dispatch(loginUser({ userName: user.user, userImage: user.image, userId: user.id }));
         if (remember) {
           const userData = {
             userName: user.user,
             userImage: user.image,
-            userId: user.id
-          }
-          localStorage.setItem('userData', JSON.stringify(userData))
-          navigate("/")
+            userId: user.id,
+          };
+          localStorage.setItem("userData", JSON.stringify(userData));
+          navigate("/");
         }
       }
-    } if (!success) { message.error(`Invalid username or password! try "user1", "pass1"`) }
-  }
+    }
+    if (!success) {
+      message.error(`Invalid username or password! try "user1", "pass1"`);
+    }
+  };
 
   const onFinish = (values) => {
     checkUserLogin(values.username, values.password, values.remember);
@@ -48,8 +50,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='login-container'>
-      <div className='login-form'>
+    <div className="login-container">
+      <div className="login-form">
         <Form
           name="basic"
           labelCol={{
@@ -72,7 +74,7 @@ const LoginPage = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your username!',
+                message: "Please input your username!",
               },
             ]}
           >
@@ -84,7 +86,7 @@ const LoginPage = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your password!',
+                message: "Please input your password!",
               },
             ]}
           >
