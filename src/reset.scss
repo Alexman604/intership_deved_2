@@ -131,7 +131,7 @@ q {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  transition: .5s ease-in-out;
+  // transition: .5s ease-in-out;
 }
 
 blockquote:before,
@@ -391,4 +391,8 @@ button:focus {
   --blue: #2E8BC0;
   --light-blue: #B1D4E0 ;
 
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
