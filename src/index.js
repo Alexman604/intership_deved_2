@@ -6,7 +6,7 @@ import App from "./components/app/app";
 import { store } from "./store/store";
 import "./reset.scss";
 import "./normalize.scss";
-import "./index.scss";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../store/useAuth";
 import Header from "../header/header";
+import "./index.scss";
 
 const App = () => {
   const dispatch = useDispatch();
